@@ -130,7 +130,7 @@ class DatabaseProvider:
 
 # ------------------- Beispielnutzung -------------------
 
-if __name__ == "__main__":
+"""if __name__ == "__main__":
     dataBase = DatabaseProvider()
 
     dataBase.create_table(
@@ -148,4 +148,4 @@ if __name__ == "__main__":
     dataBase.select_all("DiaryCardEntries")
 
     dataBase.delete("DiaryCardEntries", "date", "2025-11-11")
-    dataBase.select_all("DiaryCardEntries")
+    dataBase.select_all("DiaryCardEntries")"""
