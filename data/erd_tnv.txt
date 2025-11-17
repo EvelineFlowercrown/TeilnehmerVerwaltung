@@ -1,55 +1,54 @@
 ER-DIAGRAMM: TEILNEHMENDENVERWALTUNG
 
-ENTITY: teilnehmende
-- tn_id (PK)
-- nachname
-- vorname
+ENTITY: participants
+- p_id (PK)
+- surname
+- first_name
 - btz_start
-- btz_ende
-- bt_id (FK -> bt_mitarbeitende.bt_id)
-- ps_id (FK -> ps_mitarbeitende.ps_id)
+- btz_end
+- pt_id (FK -> pt_staff.pt_id)
+- ps_id (FK -> ps_staff.ps_id)
 - gdb
 - bvb
-- sitzplatz
-- kuerzel
-- geburtstag
-- geburtstagsliste
-- tisch_verstellbar
-- massnahme
+- seat
+- initials
+- birthday
+- birthday_list
+- table
+- measure
 
-ENTITY: urlaub
-- tn_id (FK -> teilnehmende.tn_id)
-- urlaub_start
-- urlaub_ende
+ENTITY: vacation
+- p_id (FK -> participants.p_id)
+- vacation_start
+- vacation_end
 
-ENTITY: ps_mitarbeitende
+ENTITY: ps_staff
 - ps_id (PK)
-- vorname_ps
-- nachname_ps
+- first_name_ps
+- surname_ps
 
-ENTITY: bt_mitarbeitende
-- bt_id (PK)
-- vorname_bt
-- nachname_bt
+ENTITY: pt_staff
+- pt_id (PK)
+- first_name_pt
+- surname_pt
 
-ENTITY: praktikum
-- tn_id (FK -> teilnehmende.tn_id)
-- praktikum_start
-- praktikum_ende
-- btz_tag
+ENTITY: internship
+- p_id (FK -> participants.p_id)
+- internship_start
+- internship_end
+- btz_day
 
-ENTITY: Einsatz
-- tn_id (FK -> teilnehmende.tn_id)
-- kd_id (FK -> kuechendienst.kd_id)
+ENTITY: assignment
+- p_id (FK -> participants.p_id)
+- kd_id (FK -> kitchen_duty.kd_id)
 
-ENTITY: kuechendienst
+ENTITY: kitchen_duty
 - kd_id (PK)
-- kw_kd
+- cw_kd
 
 RELATIONSHIPS:
-- teilnehmende 1:N urlaub
-- teilnehmende N:1 ps_mitarbeitende (wird betreut)
-- teilnehmende N:1 bt_mitarbeitende (wird betreut)
-- teilnehmende 1:N praktikum (macht)
-- teilnehmende 1:N Einsatz
-- kuechendienst 1:N Einsatz
+- participants 1:N vacation (takes vacation)
+- participants N:1 ps_staff (supervised by)
+- participants N:1 pt_staff (supervised by)
+- participants 1:N internship (does an internship)
+- participants 1:N assignment - kitchen_duty 1:N assignment

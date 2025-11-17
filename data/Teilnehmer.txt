@@ -1,1 +1,0 @@
-nachname,vorname,btz_start,btz_ende,bt_id,ps_id,gdb,massnahme,bvb,sitzplatz,kuerzel,geburtstag,geburtstagsliste,tisch_verstellbar,massnahme

@@ -1,0 +1,1 @@
+p_id, surname, first_name, btz_start, btz_end, pt_id, ps_id, gdb, bvb, seat, initials, birthday, birthday_list, table, measure
