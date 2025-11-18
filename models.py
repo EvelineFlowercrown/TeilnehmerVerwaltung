@@ -1,5 +1,5 @@
 from sqlalchemy import Column, String, Integer, Date, Boolean, ForeignKey
-from sqlalchemy.orm import DeclarativeBase, relationship
+from sqlalchemy.orm import relationship, MappedColumn, Mapped
 from database import BaseClass
 
 
@@ -9,7 +9,7 @@ from database import BaseClass
 class Teilnehmender(BaseClass):
     __tablename__ = "teilnehmende"
 
-    tn_id = Column(Integer, primary_key=True)
+    tn_id: Mapped[int] = MappedColumn(Integer, primary_key=True)
 
     # Stammdaten
     nachname = Column(String)
@@ -87,7 +87,7 @@ class Praktikum(BaseClass):
 # =========================================================
 #   BT-MITARBEITER (Betreuer)
 # =========================================================
-class BT_Mitarbeiter(BaseClass):
+class BtMitarbeiter(BaseClass):
     __tablename__ = "bt_mitarbeiter"
 
     bt_id = Column(Integer, primary_key=True)
@@ -102,7 +102,7 @@ class BT_Mitarbeiter(BaseClass):
 # =========================================================
 #   PS-MITARBEITER (Pädagogischer Mitarbeiter)
 # =========================================================
-class PS_Mitarbeiter(BaseClass):
+class PsMitarbeiter(BaseClass):
     __tablename__ = "ps_mitarbeiter"
 
     ps_id = Column(Integer, primary_key=True)
