@@ -1,7 +1,5 @@
 # main.py
-import importer
-import models
-from database import engine, session
+from database import engine
 from models import *
 
 # Tabellen erzeugen

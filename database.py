@@ -1,20 +1,14 @@
-#database.py
-from sqlalchemy import create_engine, text, ForeignKey, Integer, String, Date, column
-from sqlalchemy.orm import sessionmaker, DeclarativeBase, relationship
+# database.py
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
-#region DB-Setup
-
-# setup engine base string: "<dialect>+<optional_driver>://<username>:<password>@<host>:<port>/<database>"
-#alternativ in memory: "sqlite://:memory:"
 DATABASE_URL = "sqlite:///Database.db"
-engine = create_engine(DATABASE_URL, echo=False)
 
-# setup session
-session = sessionmaker(bind=engine)
-session = session()
+engine = create_engine(
+    DATABASE_URL, connect_args={"check_same_thread": False}
+)  # sqlite-threadsafety
+SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
-# ORM Base Class
+
 class BaseClass(DeclarativeBase):
     pass
-
-#endregion DB-Setup

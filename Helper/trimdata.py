@@ -16,8 +16,10 @@ def remove_duplicates(csv_path: str, output_path: str):
     # Neue CSV nur mit eindeutigen Zeilen speichern
     unique_df = pd.DataFrame(unique_rows)
     unique_df.to_csv(output_path, index=False)
-    print(f"✅ {len(unique_rows)} eindeutige Zeilen gespeichert, {len(df) - len(unique_rows)} Duplikate entfernt.")
+    print(
+        f"✅ {len(unique_rows)} eindeutige Zeilen gespeichert, {len(df) - len(unique_rows)} Duplikate entfernt."
+    )
 
 
 # Beispiel verwenden:
-remove_duplicates("data/Praktikum.csv", "data/Praktikum.csv")
+remove_duplicates("../data/Praktikum.csv", "data/Praktikum.csv")
