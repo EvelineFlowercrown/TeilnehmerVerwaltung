@@ -66,3 +66,49 @@ class PsStaff(BaseClass)
     assigment:Mapped["assigment"]= relationship( back_populates= "paticipants")
 
 
+class KitchenDuty(Base):
+    __tablename__ = "kitchen_dutys_table"
+
+    kd_id: Mapped[str] = mapped_column(primary_key=True)
+    cw_id: Mapped[int] = mapped_column(nullable=False)
+    participants: Mapped[List[Participant]] = relationship(
+        secondary=assignments_table, back_populates="kitchen_duties"
+    )
+
+
+class Assignment(Base):
+    __tablename__ = "assignments_table"
+    p_id: Mapped[int] = mapped_column(
+        ForeignKey("participants_table.p_id"), primary_key=True, nullable=False
+    )
+    kd_id: Mapped[int] = mapped_column(
+        ForeignKey("kitchen_dutys_table.ki_id"),
+        primary_key=True,
+        nullable=False,
+    )
+    participants: Mapped["Participant"] = relationship(
+        back_populates="assignments"
+    )
+    kitchen_duties: Mapped["KitchenDuty"] = relationship(
+        back_populates="assigments"
+    )
+
+
+class Internship(Base):
+    __tablename__ = "internships_table"
+    p_id: Mapped[int] = mapped_column(
+        ForeignKey("participants_table.p_id"), primary_key=True, nullable=False
+    )
+    internship_start: Mapped[date] = mapped_column(
+        Date, primary_key=True, nullable=False
+    )
+    internship_end: Mapped[Date] = mapped_column(nullable=False)
+    btz_day: Mapped[int] = mapped_column(nullable=False)
+
+
+class PtStaff(Base):
+    __tablename__ = "pt_staff_table"
+    pt_id: Mapped[int] = mapped_column(
+        ForeignKey("participants_table.p_id"), primary_key=True, nullable=False
+    )
+
