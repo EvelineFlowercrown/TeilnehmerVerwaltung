@@ -48,7 +48,7 @@ vacation:Mapped["vacation"]= relationship( back_populates= "paticipants")
 
 class PsStaff(BaseClass)
     __tablename__= "ps_staff"
-    ps_id:Mapped[Date]= mapped_column(nullable= False,primary_key= True, autoincrement = True )
+    ps_id:Mapped[int]= mapped_column(nullable= False,primary_key= True, autoincrement = True )
     first_name_ps:Mapped[str]= mapped_column( nullable= False)
     surname_ps:Mapped[str]= mapped_column( nullable= False)
 
