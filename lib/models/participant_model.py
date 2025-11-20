@@ -35,7 +35,7 @@ class Participants(BaseClass):
     # Staff Professional-Trainer and Psychosocial-Trainer
     # -----------------------------------------------------------------------------------------------------------------------
     pt_id: Mapped[int] = mapped_column(ForeignKey("pt_staff.pt_id"))
-    ps_id: Mapped[int] = mapped_column(ForeignKey("ps_staff.ps.id"))
+    ps_id: Mapped[int] = mapped_column(ForeignKey("ps_staff.ps_id"))
 
     # -----------------------------------------------------------------------------------------------------------------------
     # Needs
@@ -60,7 +60,7 @@ class Participants(BaseClass):
     # -----------------------------------------------------------------------------------------------------------------------
     # Birthdays
     # -----------------------------------------------------------------------------------------------------------------------
-    birthday: Mapped[Date] = mapped_column(Date, nullable=True)
+    birthday: Mapped[datetime.date] = mapped_column(Date, nullable=True)
 
     class BirthdayList(Enum):
         JA = "Ja"
