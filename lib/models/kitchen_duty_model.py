@@ -1,6 +1,6 @@
 from sqlalchemy import Column, from sqlalchemy import Column, String, Integer, Date, Boolean, event,ForeignKey
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped, mapped_column
-from database import BaseClass
+from lib.database import BaseClass as Base
 from datetime import timedelta
 from typing import List
 #-----------------------------------------------------------------------------------------------------------------------

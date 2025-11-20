@@ -5,7 +5,7 @@ from sqlalchemy import Integer, ForeignKey, String
 from sqlalchemy import Enum as SQLEnum
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped, mapped_column
 
-from database import BaseClass
+from lib.database import BaseClass
 
 
 class PsFirstName(Enum):
@@ -46,6 +46,4 @@ class PsStaff(BaseClass):
         SQLEnum(PsSurname, name="ps_surname_enum"), nullable=False
     )
 
-    participants: Mapped[List["Participant"]] = relationship(
-        back_populates="ps_staff"
-    )
+    participants: Mapped[List["Participant"]] = relationship(back_populates="ps_staff")

@@ -4,7 +4,7 @@ from datetime import date
 from sqlalchemy import Integer, ForeignKey, Date
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped, mapped_column
 
-from database import BaseClass
+from lib.database import BaseClass
 
 
 class Vacation(BaseClass):
@@ -21,6 +21,4 @@ class Vacation(BaseClass):
     )
     vacation_end: Mapped[Date] = mapped_column(Date, nullable=False)
 
-    participant: Mapped["Participant"] = relationship(
-        back_populates="vacations"
-    )
+    participant: Mapped["Participant"] = relationship(back_populates="vacations")

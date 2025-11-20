@@ -1,7 +1,7 @@
 from sqlalchemy import String, Integer, Date, Boolean, ForeignKey
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped, mapped_column
 
-from database import BaseClass
+from lib.database import BaseClass as Base
 from typing import List
 
 
@@ -18,12 +18,8 @@ class Assignment(Base):
         primary_key=True,
         nullable=False,
     )
-    participants: Mapped["Participant"] = relationship(
-        back_populates="assignments"
-    )
-    kitchen_duties: Mapped["KitchenDuty"] = relationship(
-        back_populates="assignments"
-    )
+    participants: Mapped["Participant"] = relationship(back_populates="assignments")
+    kitchen_duties: Mapped["KitchenDuty"] = relationship(back_populates="assignments")
 
     # -----------------------------------
     # REPR

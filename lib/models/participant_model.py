@@ -1,6 +1,6 @@
 #participant_model.py
 #from enum import Enum
-from database import BaseClass,import DateTime
+from lib.database import BaseClass
 from sqlalchemy import Column, String, Integer, Date, Boolean, ForeignKey,Enum
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped, mapped_column
 
@@ -83,20 +83,18 @@ lass Participants(BaseClass)
 #Birthdays
 #-----------------------------------------------------------------------------------------------------------------------
     birthday:Mapped[Date] = mapped_column(
-        datetime,
+        Date,
         nullable = True
     )
-    class BirthdayList(Enum)
+    class BirthdayList(Enum):
         JA = "Ja"
         NEIN = "Nein"
         KARTE = "Karte"
 
     birthday_list: Mapped[BirthdayList] = mapped_column(
-        enum,
+        SQLEnum(BirthdayList, name),
         nullable = True
     )
-
-
 # -------------------------
 # REPR
 # -------------------------

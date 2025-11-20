@@ -8,7 +8,7 @@ from sqlalchemy import Integer, ForeignKey, Date
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped, mapped_column
 from sqlalchemy import Enum as SQLEnum
 
-from database import BaseClass
+from lib.database import BaseClass
 
 
 class BtzDay(Enum):
@@ -41,6 +41,4 @@ class Internship(BaseClass):
         SQLEnum(BtzDay, name="btz_day"), nullable=False
     )
 
-    participant: Mapped["Participant"] = relationship(
-        back_populates="internships"
-    )
+    participant: Mapped["Participant"] = relationship(back_populates="internships")
