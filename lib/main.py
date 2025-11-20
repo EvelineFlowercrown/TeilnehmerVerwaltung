@@ -1,6 +1,6 @@
 # main.py
 from database import engine, BaseClass
-from models import *
+from lib.models import *
 
 # Tabellen erzeugen
 BaseClass.metadata.create_all(bind=engine)
