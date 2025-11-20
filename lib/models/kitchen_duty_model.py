@@ -1,7 +1,6 @@
-from sqlalchemy import Date, event
+import datetime
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 from lib.database import BaseClass as Base
-from datetime import timedelta
 from typing import List
 
 
@@ -13,15 +12,15 @@ class KitchenDuty(Base):
 
     kd_id: Mapped[str] = mapped_column(primary_key=True)
 
-    kd_start: Mapped[Date] = mapped_column(nullable=False)
+    kd_start: Mapped[datetime.date] = mapped_column(nullable=False)
 
-    # Event Listener before_insert in KitchenDuty
-    @event.listens_for("KitchenDuty", "before_insert")
-    def set_kd_end(mapper, connection, target):
-        if target.kd_start and not target.kd_end:
-            target.kd_end = target.kd_start + timedelta(days=5)
+    # # Event Listener before_insert in KitchenDuty
+    # @event.listens_for("KitchenDuty", "before_insert")
+    # def set_kd_end(mapper, connection, target):
+    #     if target.kd_start and not target.kd_end:
+    #         target.kd_end = target.kd_start + timedelta(days=5)
 
-    kd_end: Mapped[Date] = mapped_column(nullable=True)
+    kd_end: Mapped[datetime.date] = mapped_column(nullable=True)
 
     participants: Mapped[List["Participant"]] = relationship(
         secondary="assignment_table", back_populates="kitchen_duties"
