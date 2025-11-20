@@ -1,16 +1,21 @@
-# This is a sample Python script.
+# main.py
+from database import engine, BaseClass
+from models import *
 
-# Press Umschalt+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Tabellen erzeugen
+BaseClass.metadata.create_all(bind=engine)
+
+# import_order = {
+#    "data/bt_mitarbeiter.csv":models.BT_Mitarbeiter,
+#    "data/ps_mitarbeiter.csv":models.PS_Mitarbeiter,
+#    "data/teilnehmende.csv":models.Teilnehmender,
+#    "data/Praktikum.csv":models.Praktikum,
+# }
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Strg+F8 to toggle the breakpoint.
+# for path in import_order.keys():
+#    importer.import_csv_to_table(path,import_order[path])
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# teilnehmer = session.get(Teilnehmender, 69)
+# print(teilnehmer.bt_mitarbeiter.vorname)

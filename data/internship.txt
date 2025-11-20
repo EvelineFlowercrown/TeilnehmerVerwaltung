@@ -1,1 +1,0 @@
-p_id, internship_start, internship_end, btz_day
