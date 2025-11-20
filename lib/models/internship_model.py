@@ -1,7 +1,9 @@
 """Models related to internship scheduling and BTZ attendance."""
 
+from typing import List
 from datetime import date
 from enum import Enum
+
 from sqlalchemy import Integer, ForeignKey, Date
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped, mapped_column
 from sqlalchemy import Enum as SQLEnum
@@ -35,8 +37,10 @@ class Internship(BaseClass):
         nullable=False,
     )
     internship_end: Mapped[Date] = mapped_column(Date, nullable=False)
-    btz_day: Mapped[BtzDay] = mapped_column(SQLEnum(nullable=False))
+    btz_day: Mapped[BtzDay] = mapped_column(
+        SQLEnum(BtzDay, name="btz_day"), nullable=False
+    )
 
-    participants: Mapped["Participant"] = relationship(
+    participant: Mapped["Participant"] = relationship(
         back_populates="internships"
     )

@@ -4,7 +4,7 @@ from database import BaseClass,import DateTime
 from sqlalchemy import Column, String, Integer, Date, Boolean, ForeignKey,Enum
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped, mapped_column
 
-from Models import Vaction
+
 
 lass Participants(BaseClass)
     __tablename__= "participant_table"
@@ -96,9 +96,7 @@ lass Participants(BaseClass)
         nullable = True
     )
 
-vacations: Mapped[list["Vacation"]] = relationship( back_populates="participant")
-interships:Mapped[list["Intership"]] = relationship( back_populates="participant")
-assignments:Mapped[list["Assignment"]] = relationship( back_populates="participant")
+
 # -------------------------
 # REPR
 # -------------------------
