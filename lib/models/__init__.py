@@ -1,4 +1,5 @@
-from .participant_model import Participants
+print("Loading lib.models package")
+from .participant_model import Participant
 from .ps_staff_model import PsStaff
 from .pt_staff_model import PtStaff
 from .assignment_model import Assignment

@@ -10,19 +10,22 @@ from typing import List
 # --------------------------------------------------------------------------------------------------------------------
 class Assignment(Base):
     __tablename__ = "assignment_table"
+
     p_id: Mapped[int] = mapped_column(
-        ForeignKey("participants_table.p_id"), primary_key=True, nullable=False
+        ForeignKey("participant_table.p_id"),
+        primary_key=True
     )
     kd_id: Mapped[int] = mapped_column(
-        ForeignKey("kitchen_dutys_table.ki_id"),
-        primary_key=True,
-        nullable=False,
+        ForeignKey("kitchen_duties_table.kd_id"),
+        primary_key=True
     )
-    participants: Mapped["Participant"] = relationship(back_populates="assignments")
-    kitchen_duties: Mapped["KitchenDuty"] = relationship(back_populates="assignments")
 
-    # -----------------------------------
-    # REPR
-    # -----------------------------------
-    def __repr__(self) -> str:
+    participant: Mapped["Participant"] = relationship(
+        back_populates="assignments"
+    )
+    kitchen_duty: Mapped["KitchenDuty"] = relationship(
+        back_populates="assignments"
+    )
+
+    def __repr__(self):
         return f"<Assignment(p_id={self.p_id}, kd_id={self.kd_id})>"
