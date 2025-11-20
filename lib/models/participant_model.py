@@ -1,4 +1,5 @@
 # participant_model.py
+import datetime
 from enum import Enum
 from lib.database import BaseClass
 from sqlalchemy import (
@@ -27,8 +28,8 @@ class Participants(BaseClass):
     # ----------------------------------------------------------------------------------------------------------------------
     # Start End Measure
     # ----------------------------------------------------------------------------------------------------------------------
-    btz_start: Mapped[Date] = mapped_column(nullable=False)
-    btz_ende: Mapped[Date] = mapped_column(nullable=False)
+    btz_start: Mapped[datetime.date] = mapped_column(nullable=False)
+    btz_ende: Mapped[datetime.date] = mapped_column(nullable=False)
 
     # ----------------------------------------------------------------------------------------------------------------------
     # Staff Professional-Trainer and Psychosocial-Trainer
@@ -39,8 +40,8 @@ class Participants(BaseClass):
     # -----------------------------------------------------------------------------------------------------------------------
     # Needs
     # -----------------------------------------------------------------------------------------------------------------------
-    gdb: Mapped[Boolean] = mapped_column(nullable=True)
-    bvb: Mapped[Boolean] = mapped_column(nullable=True)
+    gdb: Mapped[bool] = mapped_column(nullable=True)
+    bvb: Mapped[bool] = mapped_column(nullable=True)
     seat: Mapped[int] = mapped_column(nullable=True)
     initials: Mapped[str] = mapped_column(nullable=True)
     table: Mapped[int] = mapped_column(nullable=True)
