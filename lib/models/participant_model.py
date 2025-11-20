@@ -1,12 +1,12 @@
 #participant_model.py
-#from enum import Enum
+from enum import Enum
 from lib.database import BaseClass
-from sqlalchemy import Column, String, Integer, Date, Boolean, ForeignKey,Enum
+from sqlalchemy import Column, String, Integer, Date, Boolean, ForeignKey,Enum as SQLEnum
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped, mapped_column
 
 
 
-lass Participants(BaseClass)
+class Participants(BaseClass):
     __tablename__= "participant_table"
 
     p_id:Mapped[int] = mapped_column(
@@ -67,7 +67,7 @@ lass Participants(BaseClass)
         nullable = True
     )
     #Enum for Measure
-    class Measure(Enum)
+    class Measure(Enum):
         BT = "BT"
         BVB = "BVB"
         FSM = "FSM"
@@ -75,7 +75,7 @@ lass Participants(BaseClass)
 
 
     measure:Mapped[Measure] = mapped_column(
-        enum
+        SQLEnum(Measure, name = "measure_enum"),
         nullable = False
     )
 
@@ -92,7 +92,7 @@ lass Participants(BaseClass)
         KARTE = "Karte"
 
     birthday_list: Mapped[BirthdayList] = mapped_column(
-        SQLEnum(BirthdayList, name),
+        SQLEnum(BirthdayList, name = "birthday_list_enum"),
         nullable = True
     )
 # -------------------------
@@ -102,4 +102,4 @@ lass Participants(BaseClass)
         return (
             f"<Participants(p_id={self.p_id}, "
             f"name='{self.first_name} {self.surname}', "
-            f"measure={self.measure.value})>"
+            f"measure={self.measure.value})>")
