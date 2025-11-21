@@ -1,10 +1,10 @@
-# main.py
 import random
+from lib.app import create_app
+from nicegui import ui
+from sqlalchemy import select
 
-from sqlalchemy import select, func
-from lib import importer
-import lib.models as models
-from lib.database import engine, BaseClass, SessionLocal
+from lib import models, importer
+from lib.database import BaseClass, engine, SessionLocal
 
 # Tabellen erzeugen
 BaseClass.metadata.create_all(bind=engine)
@@ -47,5 +47,5 @@ def wer_wie_oft_küchendienst():
     for user in all_users:
         print(f"{user.first_name + ' ' + user.surname} has performed {len(user.kitchen_duties)} kitchen duties.")
 
+create_app()
 
-wer_wie_oft_küchendienst()

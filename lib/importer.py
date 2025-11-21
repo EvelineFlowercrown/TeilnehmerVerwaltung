@@ -1,7 +1,11 @@
 import csv
-from datetime import datetime, date
+from datetime import date
+from time import strptime
+
 from sqlalchemy import inspect, Date, Integer, Boolean
-from database import SessionLocal
+
+from lib.database import SessionLocal
+
 
 # Hilfsfunktion: Datum erkennen
 def try_parse_date(value: str) -> date | None:
@@ -18,7 +22,7 @@ def try_parse_date(value: str) -> date | None:
 
     for fmt in formats:
         try:
-            return datetime.strptime(value, fmt).date()
+            return strptime(value, fmt).date()
         except ValueError:
             pass
 
