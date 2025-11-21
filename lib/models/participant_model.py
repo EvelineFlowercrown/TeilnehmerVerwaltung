@@ -2,6 +2,7 @@
 import datetime
 from enum import Enum
 from typing import List
+from lib.models.assignment_table import assignment_table
 
 from lib.database import BaseClass
 from sqlalchemy import (
@@ -54,9 +55,8 @@ class Participant(BaseClass):
         nullable=True
     )
 
-    assignments: Mapped[List["Assignment"]] = relationship(back_populates="participant")
     kitchen_duties: Mapped[List["KitchenDuty"]] = relationship(
-        secondary="assignment_table",
+        secondary = assignment_table,
         back_populates="participants"
     )
     internships: Mapped[List["Internship"]] = relationship(back_populates="participant")
