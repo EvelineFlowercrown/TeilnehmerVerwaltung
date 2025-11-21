@@ -45,9 +45,7 @@ def import_csv_to_table(csv_path: str, model_class):
             for col_name, raw_value in row.items():
 
                 if col_name not in model_columns:
-                    print(
-                        f"⚠️ Spalte '{col_name}' existiert nicht im Modell {model_class.__name__}."
-                    )
+                    print(f"⚠️ Spalte '{col_name}' existiert nicht im Modell {model_class.__name__}.")
                     continue
 
                 column = model_columns[col_name]
@@ -70,6 +68,4 @@ def import_csv_to_table(csv_path: str, model_class):
 
         Session.commit()
 
-    print(
-        f"📥 {count} Datensätze erfolgreich in Tabelle '{model_class.__tablename__}' importiert."
-    )
+    print(f"📥 {count} Datensätze erfolgreich in Tabelle '{model_class.__tablename__}' importiert.")

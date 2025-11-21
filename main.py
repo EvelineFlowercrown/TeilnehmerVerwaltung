@@ -1,5 +1,8 @@
 # main.py
 import random
+from lib.app import create_app
+from nicegui import ui
+from sqlalchemy import select
 
 from sqlalchemy import select
 from lib import models, importer
@@ -9,7 +12,6 @@ from lib.database import engine, BaseClass, SessionLocal
 BaseClass.metadata.create_all(bind=engine)
 # Session Starten
 session = SessionLocal()
-
 
 def import_mock_data():
     import_order = {
@@ -41,14 +43,13 @@ def import_mock_data():
 
 # import_mock_data()
 
-
-# beispielmethode zur datenabfrage
+#beispielmethode zur datenabfrage
 def wer_wie_oft_küchendienst():
     all_users = session.scalars(select(models.Participant)).all()
     for user in all_users:
-        print(
-            f"{user.first_name + ' ' + user.surname} has performed {len(user.kitchen_duties)} kitchen duties."
-        )
+        print(f"{user.first_name + ' ' + user.surname} has performed {len(user.kitchen_duties)} kitchen duties.")
+
+create_app()
 
 
 wer_wie_oft_küchendienst()
