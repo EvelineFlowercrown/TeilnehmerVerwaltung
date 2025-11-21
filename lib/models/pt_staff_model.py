@@ -8,37 +8,12 @@ from sqlalchemy.orm import DeclarativeBase, relationship, Mapped, mapped_column
 from lib.database import BaseClass
 
 
-class PtFirstName(Enum):
-    NELLY = "Nelly"
-    ANDREAS = "Andreas"
-    LAURA_SOPHIE = "Laura-Sophie"
-    FRANK = "Frank"
-    STEFANIE = "Stefanie"
-    ANDREA = "Andrea"
-
-
-class PtSurname(Enum):
-    FALK = "Falk"
-    HARDER = "Harder"
-    KELLER = "Keller"
-    LEORNHARD = "Leonhardt"
-    LOBES = "Lobes"
-    REHME = "Rehme"
-
-
 class PtStaff(BaseClass):
     __tablename__ = "pt_staff_table"
 
-    pt_id: Mapped[int] = mapped_column(
-        ForeignKey("participants_table.p_id"),
-        primary_key=True,
-        nullable=False,
-    )
-    first_name_ps: Mapped[PtFirstName] = mapped_column(
-        SQLEnum(PtFirstName, name="pt_firstname_enum"), nullable=False
-    )
-    surname_ps: Mapped[PtSurname] = mapped_column(
-        SQLEnum(PtSurname, name="pt_surname_enum"), nullable=False
-    )
+    pt_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
 
-    participants: Mapped[List["Participant"]] = relationship(back_populates="ps_staff")
+    first_name_pt: Mapped[str] = mapped_column(nullable=False)
+    surname_pt: Mapped[str] = mapped_column(nullable=False)
+
+    participants: Mapped[List["Participant"]] = relationship(back_populates="pt_staff")
