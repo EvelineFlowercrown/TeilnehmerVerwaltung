@@ -2,7 +2,6 @@ import csv
 from datetime import datetime, date
 from sqlalchemy import inspect, Date, Integer, Boolean
 from database import SessionLocal
-import pandas as pd
 
 # Hilfsfunktion: Datum erkennen
 def try_parse_date(value: str) -> date | None:

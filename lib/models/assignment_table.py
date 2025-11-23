@@ -1,5 +1,5 @@
 from sqlalchemy import Table, Column, ForeignKey, Integer
-from lib.database import BaseClass as Base
+from database import BaseClass as Base
 
 assignment_table = Table(
     "assignment_table",

@@ -2,9 +2,9 @@
 import random
 
 from sqlalchemy import select, func
-from lib import importer
-import lib.models as models
-from lib.database import engine, BaseClass, SessionLocal
+from importer import *
+import models
+from database import engine, BaseClass, SessionLocal
 
 # Tabellen erzeugen
 BaseClass.metadata.create_all(bind=engine)
@@ -37,8 +37,6 @@ def import_mock_data():
     session.commit()
 
 
-
-
 #import_mock_data()
 
 #beispielmethode zur datenabfrage
@@ -46,6 +44,5 @@ def wer_wie_oft_küchendienst():
     all_users = session.scalars(select(models.Participant)).all()
     for user in all_users:
         print(f"{user.first_name + ' ' + user.surname} has performed {len(user.kitchen_duties)} kitchen duties.")
-
-
+        
 wer_wie_oft_küchendienst()

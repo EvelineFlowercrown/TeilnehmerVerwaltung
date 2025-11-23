@@ -1,8 +1,8 @@
 import datetime
 from sqlalchemy.orm import relationship, Mapped, mapped_column
-from lib.database import BaseClass as Base
+from database import BaseClass as Base
 from typing import List
-from lib.models.assignment_table import assignment_table
+from models.assignment_table import assignment_table
 
 
 class KitchenDuty(Base):

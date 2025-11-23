@@ -8,7 +8,7 @@ from sqlalchemy import Integer, ForeignKey, Date
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped, mapped_column
 from sqlalchemy import Enum as SQLEnum
 
-from lib.database import BaseClass
+from database import BaseClass
 
 
 class BtzDay(Enum):

@@ -4,7 +4,7 @@ from datetime import date
 from sqlalchemy import Integer, ForeignKey, Date
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped, mapped_column
 
-from lib.database import BaseClass
+from database import BaseClass
 
 
 class Vacation(BaseClass):
