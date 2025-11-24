@@ -1,8 +1,8 @@
 import datetime
 from sqlalchemy.orm import relationship, Mapped, mapped_column
-from database import BaseClass as Base
+from lib.database import BaseClass as Base
 from typing import List
-from models.assignment_table import assignment_table
+from lib.models.assignment_table import assignment_table
 
 
 class KitchenDuty(Base):
@@ -13,8 +13,7 @@ class KitchenDuty(Base):
     kd_end: Mapped[datetime.date] = mapped_column(nullable=True)
 
     participants: Mapped[List["Participant"]] = relationship(
-        secondary = assignment_table,
-        back_populates="kitchen_duties"
+        secondary=assignment_table, back_populates="kitchen_duties"
     )
 
     def __repr__(self):

@@ -1,7 +1,8 @@
 import csv
 from datetime import datetime, date
 from sqlalchemy import inspect, Date, Integer, Boolean
-from database import SessionLocal
+from lib.database import SessionLocal
+
 
 # Hilfsfunktion: Datum erkennen
 def try_parse_date(value: str) -> date | None:
@@ -10,10 +11,10 @@ def try_parse_date(value: str) -> date | None:
 
     value = value.strip()
     formats = [
-        "%Y/%m/%d",   # 2025/01/11
-        "%m/%d/%Y",   # 1/11/2025
-        "%d/%m/%Y",   # 11/01/2025
-        "%Y-%m-%d",   # ISO
+        "%Y/%m/%d",  # 2025/01/11
+        "%m/%d/%Y",  # 1/11/2025
+        "%d/%m/%Y",  # 11/01/2025
+        "%Y-%m-%d",  # ISO
     ]
 
     for fmt in formats:
@@ -44,7 +45,9 @@ def import_csv_to_table(csv_path: str, model_class):
             for col_name, raw_value in row.items():
 
                 if col_name not in model_columns:
-                    print(f"⚠️ Spalte '{col_name}' existiert nicht im Modell {model_class.__name__}.")
+                    print(
+                        f"⚠️ Spalte '{col_name}' existiert nicht im Modell {model_class.__name__}."
+                    )
                     continue
 
                 column = model_columns[col_name]
@@ -67,4 +70,6 @@ def import_csv_to_table(csv_path: str, model_class):
 
         Session.commit()
 
-    print(f"📥 {count} Datensätze erfolgreich in Tabelle '{model_class.__tablename__}' importiert.")
+    print(
+        f"📥 {count} Datensätze erfolgreich in Tabelle '{model_class.__tablename__}' importiert."
+    )
