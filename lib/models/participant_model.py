@@ -22,7 +22,7 @@ class Participant(BaseClass):
     first_name: Mapped[str] = mapped_column(nullable=False)
 
     btz_start: Mapped[datetime.date] = mapped_column(nullable=False)
-    btz_ende: Mapped[datetime.date] = mapped_column(nullable=False)
+    btz_end: Mapped[datetime.date] = mapped_column(nullable=False)
 
     pt_id: Mapped[int] = mapped_column(ForeignKey("pt_staff_table.pt_id"))
     ps_id: Mapped[int] = mapped_column(ForeignKey("ps_staff_table.ps_id"))

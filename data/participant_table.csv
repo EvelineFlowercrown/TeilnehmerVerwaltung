@@ -1,4 +1,4 @@
-p_id,surname,first_name,btz_start,btz_ende,pt_id,ps_id,gdb,bvb,seat,initials,table,measure,birthday,birthday_list
+p_id,surname,first_name,btz_start,btz_end,pt_id,ps_id,gdb,bvb,seat,initials,table,measure,birthday,birthday_list
 1,Tozer,Hussein,2025/02/10,2025/04/02,6,3,false,true,6,AYE,12,BT,1996/05/28,KARTE
 2,Temby,Quent,2025/09/21,2025/08/17,6,2,true,false,25,JHB,4,FSM,2000/01/20,JA
 3,Tissington,Krispin,2025/11/13,2025/04/12,2,6,false,true,7,UDN,14,BVB,1996/06/14,NEIN

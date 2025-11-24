@@ -25,7 +25,7 @@ def test_create_participant(session):
         surname="Mustermann",
         first_name="Max",
         btz_start=datetime.date(2023, 1, 1),
-        btz_ende=datetime.date(2023, 12, 31),
+        btz_end=datetime.date(2023, 12, 31),
         pt_id=1,
         ps_id=2,
         gdb=True,
