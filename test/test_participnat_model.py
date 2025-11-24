@@ -22,6 +22,7 @@ def session():
 
 def test_create_participant(session):
     participant = Participant(
+        p_id = Participant.p_id,
         surname="Mustermann",
         first_name="Max",
         btz_start=datetime.date(2023, 1, 1),
@@ -41,6 +42,7 @@ def test_create_participant(session):
     query = session.query(Participant).filter_by(surname="Mustermann").first()
 
     assert query is not None
+    assert query.p_id == Participant.p_id
     assert query.first_name == "Max"
     assert query.seat == 7
     assert query.initials == "MM"
