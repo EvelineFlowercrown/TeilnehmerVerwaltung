@@ -2,9 +2,9 @@
 import datetime
 from enum import Enum
 from typing import List
-from models.assignment_table import assignment_table
+from lib.models.assignment_table import assignment_table
 
-from database import BaseClass
+from lib.database import BaseClass
 from sqlalchemy import (
     Date,
     ForeignKey,
