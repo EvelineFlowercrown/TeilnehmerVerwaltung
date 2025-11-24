@@ -1,21 +1,24 @@
 import pytest
 import datetime
 
+from fontTools.varLib.avar.plan import measureSlant
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from lib.models.participant_model import Participant # Importpfad
+from lib.models.participant_model import Participant  # Importpfad
 from lib.database import BaseClass
+
 
 @pytest.fixture
 def session():
     """Setup für eine In-Memory SQLite DB und Session."""
-    engine = create_engine('sqlite:///:memory:')
+    engine = create_engine("sqlite:///:memory:")
     BaseClass.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
     session = Session()
     yield session
     session.close()
+
 
 def test_create_participant(session):
     participant = Participant(
@@ -29,7 +32,8 @@ def test_create_participant(session):
         bvb=False,
         seat=7,
         initials="MM",
-        table=3
+        table=3,
+        measure="KIM",
     )
     session.add(participant)
     session.commit()
