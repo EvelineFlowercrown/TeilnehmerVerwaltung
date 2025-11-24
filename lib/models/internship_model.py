@@ -12,7 +12,6 @@ from lib.database import BaseClass
 class Internship(BaseClass):
     __tablename__ = "internships_table"
 
-    
     class BtzDay(Enum):
         """Valid BTZ attendance days."""
 
@@ -22,16 +21,17 @@ class Internship(BaseClass):
         THURSDAY = "Thursday"
         FRIDAY = "Friday"
 
-
     p_id: Mapped[int] = mapped_column(
         ForeignKey("participant_table.p_id"),
         primary_key=True,
     )
     internship_start: Mapped[date] = mapped_column(Date, primary_key=True)
     internship_end: Mapped[date] = mapped_column(Date, nullable=False)
-    
+
     btz_day: Mapped[BtzDay] = mapped_column(
         SQLEnum(BtzDay, name="btz_day_enum"), nullable=False
     )
 
-    participant: Mapped["Participant"] = relationship(back_populates="internships")
+    participant: Mapped["Participant"] = relationship(
+        back_populates="internships"
+    )
