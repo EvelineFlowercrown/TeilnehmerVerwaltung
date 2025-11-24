@@ -1,5 +1,6 @@
 black==25.11.0
 click==8.3.1
+fonttools==4.60.1
 greenlet==3.2.4
 iniconfig==2.3.0
 mypy_extensions==1.1.0
