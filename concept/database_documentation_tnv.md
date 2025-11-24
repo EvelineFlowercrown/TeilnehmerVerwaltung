@@ -66,8 +66,8 @@
 | Attribute      | Key | Data Type |Description|
 |----------------|-----|-----------|------------|
 | ps_id          | PK  | Integer  | psychosocial associate ID |
-| first_name_ps  | –   | Enum   | first name of psychosocial associate |
-| surname_ps     | –   | Enum  | surname of psychosocial associate |
+| first_name_ps  | –   | String   | first name of psychosocial associate |
+| surname_ps     | –   | String   | surname of psychosocial associate |
 
 ---
 
@@ -76,5 +76,5 @@
 | Attribute       | Key | Data Type | Description |
 |------------------|-----|-----------|-------------|
 | pt_id            | PK  | Integer  | professional trainer ID |
-| first_name_pt    | –   | Enum   | first name of professional trainer |
-| surname_pt       | –   | Enum   | surname of professional trainer |
+| first_name_pt    | –   | String   | first name of professional trainer |
+| surname_pt       | –   | String   | surname of professional trainer |
