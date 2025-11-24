@@ -15,5 +15,5 @@ git clone https://github.com/EvelineFlowercrown/TeilnehmerVerwaltung.git
 ```
 4. Installiere die benötigten Pakete aus requirements.txt :
 ```bash
-pip freeze > requirements.txt
+pip install -r requirements.txt
 ```
