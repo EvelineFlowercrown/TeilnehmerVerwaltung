@@ -50,6 +50,4 @@ def wer_wie_oft_küchendienst():
         print(f"{user.first_name + ' ' + user.surname} has performed {len(user.kitchen_duties)} kitchen duties.")
 
 create_app()
-
-
-wer_wie_oft_küchendienst()
+# wer_wie_oft_küchendienst()
