@@ -157,7 +157,7 @@ def test_delete_twice(session, sample_staff):
 
 def test_delete_nonexistent(session, sample_staff):
     """Löschen eines nicht existierenden Objekts erzeugt keine Exception."""
-    p = Participant(
+    participant = Participant(
         p_id=777,
         surname="X",
         first_name="Y",
@@ -168,7 +168,7 @@ def test_delete_nonexistent(session, sample_staff):
         pt_id=sample_staff["pt"].pt_id,
     )
     # Objekt nie hinzugefügt
-    session.delete(p)
+    session.delete(participant)
     session.commit()
 
     assert session.query(Participant).count() == 0
