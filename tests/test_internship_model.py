@@ -2,11 +2,8 @@ import pytest
 import datetime
 
 from fontTools.varLib.avar.plan import measureSlant
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 
 from lib.models.internship_model import Internship
-from lib.database import BaseClass
 
 
 

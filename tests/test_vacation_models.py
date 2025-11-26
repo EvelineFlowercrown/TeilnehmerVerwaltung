@@ -3,11 +3,9 @@ from xml.sax.handler import property_interning_dict
 import pytest
 from datetime import *
 
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 from lib.models.vacation_model import Vacation
 from lib.models.participant_model import Participant
-from lib.database import BaseClass
+
 
 
 

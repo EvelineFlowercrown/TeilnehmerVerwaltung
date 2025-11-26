@@ -1,11 +1,10 @@
 import pytest
+
 import datetime
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 
 from lib.models import PsStaff, PtStaff
 from lib.models.participant_model import Participant  # Importpfad
-from lib.database import BaseClass
+
 
 
 @pytest.fixture

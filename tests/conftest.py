@@ -2,7 +2,12 @@ import smtplib
 
 import pytest
 
-@pytest.fixture(scope="session")
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+
+from lib.database import BaseClass
+
+@pytest.fixture(scope="function")
 def session():
     """Setup für eine In-Memory SQLite DB und Session."""
     engine = create_engine("sqlite:///:memory:")
