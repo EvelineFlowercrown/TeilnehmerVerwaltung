@@ -9,14 +9,6 @@ from lib.models.internship_model import Internship
 from lib.database import BaseClass
 
 
-@pytest.fixture
-def session():
-    engine = create_engine("sqlite:///:memory:")
-    BaseClass.metadata.create_all(engine)
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    yield session
-    session.close()
 
 def test_create_internship(session):
     internship = Internship(

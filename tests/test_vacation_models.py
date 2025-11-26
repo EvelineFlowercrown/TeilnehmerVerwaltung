@@ -9,15 +9,6 @@ from lib.models.vacation_model import Vacation
 from lib.models.participant_model import Participant
 from lib.database import BaseClass
 
-@pytest.fixture
-def session():
-    """Setup für eine In-Memory SQLite DB und Session."""
-    engine = create_engine("sqlite:///:memory:")
-    BaseClass.metadata.create_all(engine)
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    yield session
-    session.close()
 
 
 def test_create_vacation(session):

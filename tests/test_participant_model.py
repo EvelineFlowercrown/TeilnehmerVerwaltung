@@ -9,17 +9,6 @@ from lib.database import BaseClass
 
 
 @pytest.fixture
-def session():
-    """Setup für eine In-Memory SQLite DB und Session."""
-    engine = create_engine("sqlite:///:memory:")
-    BaseClass.metadata.create_all(engine)
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    yield session
-    session.close()
-
-
-@pytest.fixture
 def sample_staff(session):
     """Erstellt einen PsStaff und PtStaff-Datensatz."""
     ps = PsStaff(first_name_ps="Anna", surname_ps="Sachbearbeiter")
