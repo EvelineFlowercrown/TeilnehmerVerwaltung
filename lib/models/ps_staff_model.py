@@ -1,8 +1,8 @@
-from enum import Enum
+#from enum import Enum
 from typing import List
 
-from sqlalchemy import Integer, ForeignKey, String
-from sqlalchemy import Enum as SQLEnum
+#from sqlalchemy import Integer, ForeignKey, String
+#from sqlalchemy import Enum as SQLEnum
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped, mapped_column
 
 from lib.database import BaseClass

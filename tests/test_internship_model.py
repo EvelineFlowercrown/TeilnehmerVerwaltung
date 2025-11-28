@@ -11,8 +11,8 @@ from lib.models.internship_model import Internship
 def test_create_internship(session, sample_participant):
     internship = Internship(
         p_id = sample_participant.p_id,
-        internship_start = datetime.date(2026,2,1),
-        internship_end = datetime.date(2026,1,30),
+        internship_start = datetime.date(2026,1,30),
+        internship_end = datetime.date(2026,2,1),
         btz_day = Internship.BtzDay.MONDAY
     )
     session.add(internship)
@@ -31,7 +31,7 @@ def test_create_internship(session, sample_participant):
     session.commit()
 
     q2 = session.query(Internship).filter_by(p_id=sample_participant.p_id).first()
-    assert q2.internship_end == datetime.date(2026, 4, 15)
+    assert q2.internship_end == datetime.date(2026, 1, 30)
     assert q2.btz_day == Internship.BtzDay.FRIDAY
 
     # DELETE (E)

@@ -40,11 +40,14 @@ def sample_staff(session):
     """
     Legt je einen PsStaff und PtStaff an, für Participant & Co.
     """
-    ps = PsStaff(first_name_ps="Anna", surname_ps="Sachbearbeiter")
-    pt = PtStaff(first_name_pt="Peter", surname_pt="Trainer")
+    ps =PsStaff(first_name_ps="Anna",
+                 surname_ps="Sachbearbeiter")
+    pt = PtStaff(first_name_pt="Peter",
+                 surname_pt="Trainer")
     session.add_all([ps, pt])
     session.commit()
     return {"ps": ps, "pt": pt}
+
 
 
 @pytest.fixture(scope="function")
