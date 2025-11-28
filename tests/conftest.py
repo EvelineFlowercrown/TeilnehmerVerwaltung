@@ -24,7 +24,7 @@ def engine():
 
 
 @pytest.fixture(scope="function")
-def session():
+def session(engine):
     """
     Open a database connection, start a transaction for the test, and roll back
     all changes afterwards.
