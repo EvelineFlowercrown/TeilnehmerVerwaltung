@@ -47,7 +47,8 @@ def session():
 @pytest.fixture(scope="function")
 def sample_staff(session):
     """
-    Legt je einen PsStaff und PtStaff an, für Participant & Co.
+    Create sample PsStaff and PtStaff objects and add them to the test db
+    session.
     """
     ps = PsStaff(first_name_ps="Anna", surname_ps="Sachbearbeiter")
     pt = PtStaff(first_name_pt="Peter", surname_pt="Trainer")
@@ -59,7 +60,7 @@ def sample_staff(session):
 @pytest.fixture(scope="function")
 def sample_participant(session, sample_staff):
     """
-    Minimaler Participant für Vacation, Internship, KitchenDuty-Relationen etc.
+    Create sample Participant object and add it to the test db session.
     """
     p = Participant(
         surname="Tester",
@@ -73,17 +74,3 @@ def sample_participant(session, sample_staff):
     session.add(p)
     session.commit()
     return p
-
-
-@pytest.fixture(scope="function")
-def sample_kitchen_duty(session):
-    """
-    Ein einfaches KitchenDuty-Objekt.
-    """
-    kd = KitchenDuty(
-        kd_start=datetime.date(2024, 1, 1),
-        kd_end=datetime.date(2024, 1, 5),
-    )
-    session.add(kd)
-    session.commit()
-    return kd
