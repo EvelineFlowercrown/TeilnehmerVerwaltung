@@ -4,7 +4,7 @@ import datetime
 
 from lib.models import PsStaff, PtStaff
 from lib.models.participant_model import Participant  # Importpfad
-from conftest import sample_staff
+
 
 def test_create_participant_minimal(session, sample_staff):
     participant = Participant(
