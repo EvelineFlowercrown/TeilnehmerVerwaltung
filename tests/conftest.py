@@ -1,14 +1,12 @@
-# tests/conftest.py
-
-import datetime
 import pytest
+import datetime
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, clear_mappers
 
 from lib.database import BaseClass
-from lib.models import PsStaff, PtStaff  # falls anders: Import anpassen
+from lib.models import PsStaff, PtStaff
 from lib.models.participant_model import Participant
-from lib.models.kitchen_duty_model import KitchenDuty  # Dateiname ggf. anpassen
 
 
 @pytest.fixture(scope="function")
@@ -21,7 +19,6 @@ def session():
 
     # WICHTIG: alle Models müssen irgendwo importiert sein,
     # damit sie in BaseClass.metadata registriert sind.
-
 
     SessionLocal = sessionmaker(bind=engine)
 
@@ -40,14 +37,11 @@ def sample_staff(session):
     """
     Legt je einen PsStaff und PtStaff an, für Participant & Co.
     """
-    ps =PsStaff(first_name_ps="Anna",
-                 surname_ps="Sachbearbeiter")
-    pt = PtStaff(first_name_pt="Peter",
-                 surname_pt="Trainer")
+    ps = PsStaff(first_name_ps="Anna", surname_ps="Sachbearbeiter")
+    pt = PtStaff(first_name_pt="Peter", surname_pt="Trainer")
     session.add_all([ps, pt])
     session.commit()
     return {"ps": ps, "pt": pt}
-
 
 
 @pytest.fixture(scope="function")
