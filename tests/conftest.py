@@ -41,7 +41,6 @@ def session(engine):
         db.close()
         transaction.rollback()
         connection.close()
-        clear_mappers()
 
 
 @pytest.fixture(scope="function")
@@ -50,8 +49,8 @@ def sample_staff(session):
     Create sample PsStaff and PtStaff objects and add them to the test db
     session.
     """
-    ps = PsStaff(first_name_ps="Anna", surname_ps="Sachbearbeiter")
-    pt = PtStaff(first_name_pt="Peter", surname_pt="Trainer")
+    ps = PsStaff(first_name="Anna", surname="Sachbearbeiter")
+    pt = PtStaff(first_name="Peter", surname="Trainer")
     session.add_all([ps, pt])
     session.commit()
     return {"ps": ps, "pt": pt}

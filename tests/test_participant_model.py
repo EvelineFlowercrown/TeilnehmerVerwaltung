@@ -6,6 +6,7 @@ import datetime
 from lib.models.participant_model import Participant  # Importpfad
 from lib.models import PsStaff, PtStaff
 
+
 def test_create_participant_minimal(session, sample_staff):
     participant = Participant(
         surname="Mustermann",
@@ -176,8 +177,8 @@ def test_change_relationship_references(session, sample_staff):
     ps1 = sample_staff["ps"]
     pt1 = sample_staff["pt"]
 
-    ps2 = PsStaff(first_name_ps="Erna", surname_ps="Neu")
-    pt2 = PtStaff(first_name_pt="Lukas", surname_pt="Neu")
+    ps2 = PsStaff(first_name="Erna", surname="Neu")
+    pt2 = PtStaff(first_name="Lukas", surname="Neu")
     session.add_all([ps2, pt2])
     session.commit()
 
