@@ -4,23 +4,7 @@ import datetime
 
 from lib.models import PsStaff, PtStaff
 from lib.models.participant_model import Participant  # Importpfad
-
-
-
-@pytest.fixture
-def sample_staff(session):
-    """Erstellt einen PsStaff und PtStaff-Datensatz."""
-    ps = PsStaff(first_name_ps="Anna", surname_ps="Sachbearbeiter")
-    pt = PtStaff(first_name_pt="Peter", surname_pt="Trainer")
-    session.add_all([ps, pt])
-    session.commit()
-    return {"ps": ps, "pt": pt}
-
-
-# -----------------------
-# region Tests: Create
-# -----------------------
-
+from conftest import sample_staff
 
 def test_create_participant_minimal(session, sample_staff):
     participant = Participant(
