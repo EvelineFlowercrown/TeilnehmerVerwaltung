@@ -8,27 +8,39 @@ from lib.database import BaseClass
 from lib.models import PsStaff, PtStaff
 from lib.models.participant_model import Participant
 
+# WICHTIG: alle Models müssen irgendwo importiert sein,
+# damit sie in BaseClass.metadata registriert sind.
+
+
+@pytest.fixture(scope="session")
+def engine():
+    """
+    Create an in-memory SQLite database and initialize all tables once for the
+    entire test session.
+    """
+    engine = create_engine("sqlite:///:memory:", echo=False)
+    BaseClass.metadata.create_all(engine)
+    return engine
+
 
 @pytest.fixture(scope="function")
 def session():
     """
-    Erstellt eine In-Memor-Session.Baut Tabelle neu und
-    entfernt sie danach.
+    Open a database connection, start a transaction for the test, and roll back
+    all changes afterwards.
     """
-    engine = create_engine("sqlite:///:memory:", echo=False)
+    connection = engine.connect()
+    transaction = connection.begin()
 
-    # WICHTIG: alle Models müssen irgendwo importiert sein,
-    # damit sie in BaseClass.metadata registriert sind.
-
-    SessionLocal = sessionmaker(bind=engine)
-
-    BaseClass.metadata.create_all(engine)
+    SessionLocal = sessionmaker(bind=connection)
     db = SessionLocal()
+
     try:
         yield db
     finally:
         db.close()
-        BaseClass.metadata.drop_all(engine)
+        transaction.rollback()
+        connection.close()
         clear_mappers()
 
 
