@@ -3,6 +3,8 @@ import datetime
 from enum import Enum
 from typing import List
 
+
+from lib.models import Internship, Vacation, KitchenDuty, PsStaff, PtStaff
 from lib.models.assignment_table import assignment_table
 from lib.database import BaseClass
 
@@ -49,7 +51,7 @@ class Participant(BaseClass):
     )
 
     @validates("measure")
-    def validate_measure(self, key, value):
+    def validate_measure(self, value):
         # key == "measure"
 
         # Wenn bereits ein Enum-Objekt übergeben wird
