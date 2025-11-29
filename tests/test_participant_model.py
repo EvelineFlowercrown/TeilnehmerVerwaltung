@@ -4,7 +4,8 @@ import datetime
 
 
 from lib.models.participant_model import Participant  # Importpfad
-from lib.models import PsStaff, PtStaff
+from lib.models.ps_staff_model import PsStaff
+from lib.models.pt_staff_model import PtStaff
 
 def test_create_participant_minimal(session, sample_staff):
     participant = Participant(
