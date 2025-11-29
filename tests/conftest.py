@@ -6,9 +6,12 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, clear_mappers
 
 from lib.database import BaseClass
-from lib.models import PsStaff, PtStaff  # falls anders: Import anpassen
+from lib.models.ps_staff_model import PsStaff
+from lib.models.pt_staff_model import PtStaff
 from lib.models.participant_model import Participant
-from lib.models.kitchen_duty_model import KitchenDuty  # Dateiname ggf. anpassen
+from lib.models.kitchen_duty_model import KitchenDuty
+
+
 
 
 @pytest.fixture(scope="function")
