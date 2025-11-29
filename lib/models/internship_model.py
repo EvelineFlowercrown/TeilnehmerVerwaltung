@@ -5,7 +5,7 @@ from typing import List, TYPE_CHECKING
 from sqlalchemy import ForeignKey, String, Enum as SQLEnum, Date
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from lib.database import BaseClass
-from lib.models.participant_model import Participant
+from .participant_model import Participant
 
 
 class Internship(BaseClass):
@@ -42,5 +42,3 @@ class Internship(BaseClass):
     participant: Mapped["Participant"] = relationship(
         back_populates="internships"
     )
-internship_start: Mapped[date] = mapped_column(Date, primary_key=True)
-internship_end: Mapped[date] = mapped_column(Date, nullable=False)
