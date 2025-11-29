@@ -1,8 +1,11 @@
-from typing import List
 from datetime import date
 from enum import Enum
+from typing import List, TYPE_CHECKING
 
+from sqlalchemy import ForeignKey, String, Enum as SQLEnum, Date
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from lib.database import BaseClass
+from lib.models.participant_model import Participant
 
 
 class Internship(BaseClass):
@@ -21,8 +24,19 @@ class Internship(BaseClass):
         ForeignKey("participant_table.p_id"),
         primary_key=True,
     )
-    btz_day: Mapped[BtzDay] = mapped_column(
-        SQLEnum(BtzDay, name="btz_day_enum"), nullable=False
+    internship_start: Mapped[date] = mapped_column(
+        Date,
+        primary_key=True,
+        nullable=False
+    )
+
+    internship_end: Mapped[date] = mapped_column(
+        Date,
+        nullable=False
+    )
+    btz_day: Mapped["BtzDay"] = mapped_column(  # ✅ String-Zitat für Forward-Ref
+        SQLEnum(BtzDay, name="btz_day_enum"),
+        nullable=False
     )
 
     participant: Mapped["Participant"] = relationship(
