@@ -5,6 +5,7 @@ import datetime
 from lib.models.vacation_model import Vacation
 
 
+
 def test_vacation(session, sample_participant):
     # CREATE
     v = Vacation(
