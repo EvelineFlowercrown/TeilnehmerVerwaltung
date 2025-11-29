@@ -1,19 +1,30 @@
 # participant_model.py
 import datetime
 from enum import Enum
-from typing import List
+from typing import List , TYPE_CHECKING
 
 
-from lib.models import Internship, Vacation, KitchenDuty, PsStaff, PtStaff
-from lib.models.assignment_table import assignment_table
+
+if TYPE_CHECKING:
+    from .internship_model import Internship
+    from .vacation_model import Vacation
+    from .kitchen_duty_model import KitchenDuty
+    from .ps_staff_model import PsStaff
+    from .pt_staff_model import PtStaff
+    from .assignment_table import assignment_table
+
+
+
 from lib.database import BaseClass
 
 from sqlalchemy import (
-    Date,
+    Date,table,
+    Integer,
     ForeignKey,
     Enum as SQLEnum,
 )
 from sqlalchemy.orm import relationship, Mapped, mapped_column, validates
+
 
 
 class Participant(BaseClass):
@@ -76,10 +87,14 @@ class Participant(BaseClass):
         SQLEnum(BirthdayList, name="birthday_list_enum"),
         nullable=True,
     )
-
+    assignments: Mapped[list["Assignment"]] = relationship(
+        secondary="assignment_table",
+        back_populates="participants"
+    )
     kitchen_duties: Mapped[List["KitchenDuty"]] = relationship(
-        secondary=assignment_table,
-        back_populates="participants",
+        "KitchenDuty",
+        secondary="assignment_table",
+        back_populates="participants"
     )
     internships: Mapped[List["Internship"]] = relationship(back_populates="participant")
     vacations: Mapped[List["Vacation"]] = relationship(back_populates="participant")

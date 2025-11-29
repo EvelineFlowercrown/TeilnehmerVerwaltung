@@ -5,6 +5,8 @@ from sqlalchemy import Integer, ForeignKey, Date
 from sqlalchemy.orm import DeclarativeBase, relationship, Mapped, mapped_column
 
 from lib.database import BaseClass
+from .participant_model import Participant
+
 
 
 class Vacation(BaseClass):
