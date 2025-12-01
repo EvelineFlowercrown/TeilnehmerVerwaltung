@@ -53,7 +53,7 @@ def test_create_internship(session, sample_participant):
 
 
 def test_internship_invalid_btz_day_raises(session, sample_participant):
-    with pytest.raises(Exception):
+    with pytest.raises(ValueError):
         i = Internship(
             p_id=sample_participant.p_id,
             internship_start=datetime.date(2026, 5, 1),
