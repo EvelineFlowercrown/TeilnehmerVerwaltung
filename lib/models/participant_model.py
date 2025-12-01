@@ -3,6 +3,8 @@ import datetime
 from enum import Enum
 from typing import List
 
+from sqlalchemy.orm.mapper import validates
+
 from lib.models.assignment_table import assignment_table
 from lib.database import BaseClass
 
@@ -11,7 +13,7 @@ from sqlalchemy import (
     ForeignKey,
     Enum as SQLEnum,
 )
-from sqlalchemy.orm import relationship, Mapped, mapped_column, validates
+from sqlalchemy.orm import relationship, Mapped, mapped_column
 
 
 class Participant(BaseClass):
@@ -59,9 +61,9 @@ class Participant(BaseClass):
         # Strings o.ä. in das Enum umwandeln
         try:
             return Participant.Measure(value)
-        except ValueError as exc:
+        except ValueError as error:
             # Genau das sollte dein Test mit pytest.raises(ValueError) abfangen
-            raise ValueError(f"Ungültiger Wert für measure: {value!r}") from exc
+            raise ValueError(f"Ungültiger Wert für measure: {value!r}") from error
 
     birthday: Mapped[datetime.date] = mapped_column(Date, nullable=True)
 
