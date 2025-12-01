@@ -20,4 +20,6 @@ class Vacation(BaseClass):
     )
     vacation_end: Mapped[date] = mapped_column(Date, nullable=False)
 
-    participant: Mapped["Participant"] = relationship(back_populates="vacations")
+    participant: Mapped["Participant"] = relationship(
+        back_populates="vacations"
+    )
