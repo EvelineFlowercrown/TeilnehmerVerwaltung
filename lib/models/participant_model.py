@@ -4,22 +4,19 @@ from enum import Enum
 from typing import List , TYPE_CHECKING
 
 
-
 if TYPE_CHECKING:
     from .internship_model import Internship
     from .vacation_model import Vacation
     from .kitchen_duty_model import KitchenDuty
     from .ps_staff_model import PsStaff
     from .pt_staff_model import PtStaff
-    from .assignment_table import assignment_table
 
 
 
 from lib.database import BaseClass
 
 from sqlalchemy import (
-    Date,table,
-    Integer,
+    Date,
     ForeignKey,
     Enum as SQLEnum,
 )
@@ -87,10 +84,7 @@ class Participant(BaseClass):
         SQLEnum(BirthdayList, name="birthday_list_enum"),
         nullable=True,
     )
-    assignments: Mapped[list["Assignment"]] = relationship(
-        secondary="assignment_table",
-        back_populates="participants"
-    )
+
     kitchen_duties: Mapped[List["KitchenDuty"]] = relationship(
         "KitchenDuty",
         secondary="assignment_table",
