@@ -2,14 +2,11 @@ import pytest
 import datetime
 
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, clear_mappers
+from sqlalchemy.orm import sessionmaker
 
 from lib.database import BaseClass
 from lib.models import PsStaff, PtStaff
 from lib.models.participant_model import Participant
-
-# WICHTIG: alle Models müssen irgendwo importiert sein,
-# damit sie in BaseClass.metadata registriert sind.
 
 
 @pytest.fixture(scope="session")
@@ -39,7 +36,8 @@ def session(engine):
         yield db
     finally:
         db.close()
-        transaction.rollback()
+        if transaction.is_active:
+            transaction.rollback()
         connection.close()
 
 
