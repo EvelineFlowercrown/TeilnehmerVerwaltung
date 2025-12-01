@@ -24,25 +24,25 @@ def test_create_internship(session, sample_participant):
     )
 
     assert query is not None
-    assert query.internship_start == datetime.date(2026, 2, 1)
-    assert query.internship_end == datetime.date(2026, 1, 30)
+    assert query.internship_start == datetime.date(2026, 1, 30)
+    assert query.internship_end == datetime.date(2026, 2, 1)
     assert query.btz_day == Internship.BtzDay.MONDAY
 
     # UPDATE (D)
-    q.internship_end = datetime.date(2026, 4, 15)
-    q.btz_day = Internship.BtzDay.FRIDAY
+    query.internship_end = datetime.date(2026, 4, 15)
+    query.btz_day = Internship.BtzDay.FRIDAY
     session.commit()
 
-    q2 = (
+    query2 = (
         session.query(Internship)
         .filter_by(p_id=sample_participant.p_id)
         .first()
     )
-    assert q2.internship_end == datetime.date(2026, 1, 30)
-    assert q2.btz_day == Internship.BtzDay.FRIDAY
+    assert query2.internship_end == datetime.date(2026, 4, 15)
+    assert query2.btz_day == Internship.BtzDay.FRIDAY
 
     # DELETE (E)
-    session.delete(q2)
+    session.delete(query2)
     session.commit()
     assert (
         session.query(Internship)
