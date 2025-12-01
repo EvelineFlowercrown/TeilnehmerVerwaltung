@@ -1,9 +1,5 @@
 import pytest
 import datetime
-
-# from fontTools.varLib.avar.plan import measureSlant
-from pygments.lexers import q
-
 from lib.models.internship_model import Internship
 
 
