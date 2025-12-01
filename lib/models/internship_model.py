@@ -21,8 +21,8 @@ class Internship(BaseClass):
         THURSDAY = "Thursday"
         FRIDAY = "Friday"
 
-    @validates("BtzDay")
-    def validate_BtzDay(self, key, value):
+    @validates("btz_day")
+    def validate_BtzDay(self, key,  value):
         # key == "measure"
 
         # Wenn bereits ein Enum-Objekt übergeben wird
