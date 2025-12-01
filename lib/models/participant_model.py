@@ -19,6 +19,11 @@ from sqlalchemy.orm import relationship, Mapped, mapped_column
 class Participant(BaseClass):
     __tablename__ = "participant_table"
 
+    # Damit der beim test_delete_twice nicht meckert.
+    __mapper_args__ = {
+        "confirm_deleted_rows": False
+    }
+
     p_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
 
     surname: Mapped[str] = mapped_column(nullable=False)
