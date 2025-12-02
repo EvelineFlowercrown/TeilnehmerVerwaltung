@@ -131,7 +131,7 @@ def page_home():
             # Zweite Zeile: Suchfeld
             with ui.row().classes("w-full justify-end"):
                 with ui.input(
-                        placeholder="Suche nach Name, Email, etc...",
+                        placeholder="Suche nach Name, kürzel, etc...",
                         on_change=lambda e: handle_search_change(e)
                 ).props("clearable dense outlined prefix=search").classes("w-80"):
                     ui.tooltip("Durchsucht alle Text-Spalten")
