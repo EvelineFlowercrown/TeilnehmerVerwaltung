@@ -12,4 +12,4 @@ def create_app():
     def other_page():
         page_other()
 
-    ui.run(title="Teilnehmerverwaltung")
+    ui.run(host='0.0.0.0', port=8080,title="Teilnehmerverwaltung")
