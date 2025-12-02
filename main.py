@@ -1,4 +1,7 @@
+import inspect
 import random
+import traceback
+
 from lib.app import create_app
 from nicegui import ui
 from sqlalchemy import select
@@ -13,13 +16,18 @@ BaseClass.metadata.create_all(bind=engine)
 session = SessionLocal()
 
 def import_mock_data():
+    if session.scalar(select(models.PsStaff)) is not None:
+        print("Mock data already present — skipping import.")
+        return
+
+
     import_order = {
-        "../data/ps_staff_table.csv": models.PsStaff,
-        "../data/pt_staff_table.csv": models.PtStaff,
-        "../data/participant_table.csv": models.Participant,
-        "../data/internship_table.csv": models.Internship,
-        "../data/vacation_table.csv": models.Vacation,
-        "../data/kitchen_duty_table.csv": models.KitchenDuty,
+        "data/ps_staff_table.csv": models.PsStaff,
+        "data/pt_staff_table.csv": models.PtStaff,
+        "data/participant_table.csv": models.Participant,
+        "data/internship_table.csv": models.Internship,
+        "data/vacation_table.csv": models.Vacation,
+        "data/kitchen_duty_table.csv": models.KitchenDuty,
     }
 
     # CSVs laden
@@ -40,13 +48,13 @@ def import_mock_data():
     session.commit()
 
 
-# import_mock_data()
-
 #beispielmethode zur datenabfrage
 def wer_wie_oft_küchendienst():
     all_users = session.scalars(select(models.Participant)).all()
     for user in all_users:
         print(f"{user.first_name + ' ' + user.surname} has performed {len(user.kitchen_duties)} kitchen duties.")
 
-create_app()
-# wer_wie_oft_küchendienst()
+
+if __name__ in {"__main__", "__mp_main__"}:
+    import_mock_data()
+    create_app()
