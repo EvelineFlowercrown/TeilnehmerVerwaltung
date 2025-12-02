@@ -17,8 +17,8 @@ def page_home():
         finally:
             db.close()
 
-    data = load_participants()
-    print(f"Geladene Daten: {len(data)} Einträge")  # Debug
+    participants = load_participants()
+    print(f"Geladene Daten: {len(participants)} Einträge")  # Debug
 
     def build_content():
         print("build_content wird aufgerufen")  # Debug
@@ -27,19 +27,34 @@ def page_home():
         # Tabelle erzeugen
         ui.table(
             columns=[
-                {'name': 'p_id', 'label': 'ID', 'field': 'p_id'},
-                {'name': 'surname', 'label': 'Nachname', 'field': 'surname'},
-                {'name': 'first_name', 'label': 'Vorname', 'field': 'first_name'},
-                {'name': 'btz_start', 'label': 'Start', 'field': 'btz_start'},
-                {'name': 'btz_ende', 'label': 'Ende', 'field': 'btz_ende'},
+                {'name': 'p_id',
+                 'label': 'ID',
+                 'field': 'p_id'
+                 },
+                {'name': 'surname',
+                 'label': 'Nachname',
+                 'field': 'surname'
+                 },
+                {'name': 'first_name',
+                 'label': 'Vorname',
+                 'field': 'first_name'
+                 },
+                {'name': 'btz_start',
+                 'label': 'Start',
+                 'field': 'btz_start'
+                 },
+                {'name': 'btz_end',
+                 'label': 'Ende',
+                 'field': 'btz_end'
+                 },
             ],
             rows=[{
-                'p_id': p.p_id,
-                'surname': p.surname,
-                'first_name': p.first_name,
-                'btz_start': p.btz_start,
-                'btz_ende': p.btz_ende,
-            } for p in data],
+                'p_id': participant.p_id,
+                'surname': participant.surname,
+                'first_name': participant.first_name,
+                'btz_start': participant.btz_start,
+                'btz_end': participant.btz_end,
+            } for participant in participants],
             row_key='p_id'
         ).classes('w-full')
 
