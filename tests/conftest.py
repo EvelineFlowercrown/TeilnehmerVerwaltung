@@ -42,20 +42,29 @@ def session(engine):
 
 
 @pytest.fixture(scope="function")
-def sample_staff(session):
+def sample_ps(session):
     """
-    Create sample PsStaff and PtStaff objects and add them to the test db
-    session.
+    Create sample PsStaff object and add it to the test db session.
     """
     ps = PsStaff(first_name="Anna", surname="Sachbearbeiter")
-    pt = PtStaff(first_name="Peter", surname="Trainer")
-    session.add_all([ps, pt])
+    session.add(ps)
     session.commit()
-    return {"ps": ps, "pt": pt}
+    return ps
 
 
 @pytest.fixture(scope="function")
-def sample_participant(session, sample_staff):
+def sample_pt(session):
+    """
+    Create sample PtStaff object and add it to the test db session.
+    """
+    pt = PtStaff(first_name="Peter", surname="Trainer")
+    session.add(pt)
+    session.commit()
+    return pt
+
+
+@pytest.fixture(scope="function")
+def sample_participant(session, sample_ps, sample_pt):
     """
     Create sample Participant object and add it to the test db session.
     """
@@ -65,8 +74,8 @@ def sample_participant(session, sample_staff):
         btz_start=datetime.date(2024, 1, 1),
         btz_end=datetime.date(2024, 12, 31),
         measure=Participant.Measure.KIM,
-        ps_id=sample_staff["ps"].ps_id,
-        pt_id=sample_staff["pt"].pt_id,
+        ps_id=sample_ps.ps_id,
+        pt_id=sample_pt.pt_id,
     )
     session.add(p)
     session.commit()
