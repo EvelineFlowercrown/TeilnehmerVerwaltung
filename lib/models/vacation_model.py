@@ -23,3 +23,8 @@ class Vacation(BaseClass):
     participant: Mapped["Participant"] = relationship(
         back_populates="vacations"
     )
+
+    def __repr__(self):
+        return (
+            f"{self.participant.first_name} {self.participant.surname}, {self.vacation_start} to {self.vacation_end}")
+

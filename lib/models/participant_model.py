@@ -94,7 +94,4 @@ class Participant(BaseClass):
 
     def __repr__(self):
         return (
-            f"<Participant(p_id={self.p_id}, "
-            f"name='{self.first_name} {self.surname}', "
-            f"measure={self.measure.value})>"
-        )
+            f"{self.first_name} {self.surname}, {self.measure.value}")

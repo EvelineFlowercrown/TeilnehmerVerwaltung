@@ -19,3 +19,6 @@ class PtStaff(BaseClass):
     participants: Mapped[List["Participant"]] = relationship(
         back_populates="pt_staff"
     )
+
+    def __repr__(self):
+        return (f"{self.first_name} {self.surname}")
