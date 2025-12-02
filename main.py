@@ -1,4 +1,3 @@
-# main.py
 import random
 from lib.app import create_app
 from nicegui import ui
