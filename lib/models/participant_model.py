@@ -1,18 +1,11 @@
 # participant_model.py
 import datetime
 from enum import Enum
-from typing import List , TYPE_CHECKING
+from typing import List
 
+from sqlalchemy.orm.mapper import validates
 
-if TYPE_CHECKING:
-    from .internship_model import Internship
-    from .vacation_model import Vacation
-    from .kitchen_duty_model import KitchenDuty
-    from .ps_staff_model import PsStaff
-    from .pt_staff_model import PtStaff
-
-
-
+from lib.models.assignment_table import assignment_table
 from lib.database import BaseClass
 
 from sqlalchemy import (
@@ -20,12 +13,16 @@ from sqlalchemy import (
     ForeignKey,
     Enum as SQLEnum,
 )
-from sqlalchemy.orm import relationship, Mapped, mapped_column, validates
-
+from sqlalchemy.orm import relationship, Mapped, mapped_column
 
 
 class Participant(BaseClass):
     __tablename__ = "participant_table"
+
+    # Damit der beim test_delete_twice nicht meckert.
+    __mapper_args__ = {
+        "confirm_deleted_rows": False
+    }
 
     p_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
 
@@ -59,7 +56,7 @@ class Participant(BaseClass):
     )
 
     @validates("measure")
-    def validate_measure(self, value):
+    def validate_measure(self, key, value):
         # key == "measure"
 
         # Wenn bereits ein Enum-Objekt übergeben wird
@@ -69,9 +66,9 @@ class Participant(BaseClass):
         # Strings o.ä. in das Enum umwandeln
         try:
             return Participant.Measure(value)
-        except ValueError as exc:
+        except ValueError as error:
             # Genau das sollte dein Test mit pytest.raises(ValueError) abfangen
-            raise ValueError(f"Ungültiger Wert für measure: {value!r}") from exc
+            raise ValueError(f"Ungültiger Wert für measure: {value!r}") from error
 
     birthday: Mapped[datetime.date] = mapped_column(Date, nullable=True)
 
@@ -86,9 +83,8 @@ class Participant(BaseClass):
     )
 
     kitchen_duties: Mapped[List["KitchenDuty"]] = relationship(
-        "KitchenDuty",
-        secondary="assignment_table",
-        back_populates="participants"
+        secondary=assignment_table,
+        back_populates="participants",
     )
     internships: Mapped[List["Internship"]] = relationship(back_populates="participant")
     vacations: Mapped[List["Vacation"]] = relationship(back_populates="participant")

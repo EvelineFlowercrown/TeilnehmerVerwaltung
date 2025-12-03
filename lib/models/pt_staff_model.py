@@ -14,7 +14,9 @@ class PtStaff(BaseClass):
 
     pt_id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
 
-    first_name_pt: Mapped[str] = mapped_column(nullable=False)
-    surname_pt: Mapped[str] = mapped_column(nullable=False)
+    first_name: Mapped[str] = mapped_column(nullable=False)
+    surname: Mapped[str] = mapped_column(nullable=False)
 
-    participants: Mapped[List["Participant"]] = relationship(back_populates="pt_staff")
+    participants: Mapped[List["Participant"]] = relationship(
+        back_populates="pt_staff"
+    )
