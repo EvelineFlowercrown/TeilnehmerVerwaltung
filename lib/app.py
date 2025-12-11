@@ -5,7 +5,7 @@ from lib.pages.other import page_other
 def create_app():
 
     @ui.page('/')
-    def home_page():
+    async def home_page():
         page_home()
 
     @ui.page('/other')
