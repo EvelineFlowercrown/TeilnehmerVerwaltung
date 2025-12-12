@@ -12,14 +12,12 @@ from lib.database import BaseClass
 class Internship(BaseClass):
     __tablename__ = "internships_table"
 
-    class BtzDay(Enum):
-        """Valid BTZ attendance days."""
-
-        MONDAY = "Monday"
-        TUESDAY = "Tuesday"
-        WEDNESDAY = "Wednesday"
-        THURSDAY = "Thursday"
-        FRIDAY = "Friday"
+    class BtzDay(str, Enum):
+        MONDAY = "MONDAY"
+        TUESDAY = "TUESDAY"
+        WEDNESDAY = "WEDNESDAY"
+        THURSDAY = "THURSDAY"
+        FRIDAY = "FRIDAY"
 
     @validates("btz_day")
     def validate_BtzDay(self, key,  value):
