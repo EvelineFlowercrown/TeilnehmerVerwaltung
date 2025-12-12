@@ -52,12 +52,12 @@
 
 ## internship_table
 
-| Attribute        | Key | Data Type | Description |
-|------------------|-----|-----------|-------------|
-| p_id             | FK, PK  | Integer | participant ID
-| internship_start | PK   | Date      | first day of internship |
-| internship_end   | –   | Date      | last day of internship |
-| btz_day          | –   | Enum (monday, tuesday, wednesday, thursday, friday) | weekday participant is in BTZ |
+| Attribute        | Key | Data Type                                           | Description |
+|------------------|-----|-----------------------------------------------------|-------------|
+| p_id             | FK, PK  | Integer                                             | participant ID
+| internship_start | PK   | Date                                                | first day of internship |
+| internship_end   | –   | Date                                                | last day of internship |
+| btz_day          | –   | Enum (MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY) | weekday participant is in BTZ |
 
 ---
 
