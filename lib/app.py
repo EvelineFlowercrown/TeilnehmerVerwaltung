@@ -11,7 +11,7 @@ def create_app():
         page_home()
 
     @ui.page('/other')
-    def other_page():
+    async def other_page():
         page_other()
 
     port = int(os.getenv("PORT", 8080))
