@@ -3,6 +3,7 @@
 
 ## Description
 This database is used to manage participants in a rehabilitation program. 
+See example version with mock data: https://teilnehmerverwaltung.onrender.com/
 
 ## Installation
 1. Download Python 3.3.17 (or later) from https://www.python.org/ and install it.
